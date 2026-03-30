@@ -1,5 +1,8 @@
 ﻿using System.Reflection;
 
+// run dotnet restore
+// dotnet build
+// when pulling or cloning, run dotnet restore to get the dependencies
 class Program
 {
     static List<Challenge> LoadChallenges()
@@ -13,7 +16,7 @@ class Program
                 !t.IsAbstract &&
                 challengeInterface.IsAssignableFrom(t))
             .Select(t => (Challenge)Activator.CreateInstance(t)!)
-            .OrderBy(c => c.number)
+            .OrderBy(c => c.challengeNumber)
             .ToList();
     }
 
@@ -26,7 +29,7 @@ class Program
 
             foreach (var challenge in challenges)
             {
-                Console.WriteLine($"{challenge.number}. {challenge.name}");
+                Console.WriteLine($"{challenge.challengeNumber}. {challenge.challengeName}");
             }
 
             Console.WriteLine("0. Exit");
@@ -39,7 +42,7 @@ class Program
                 return;
 
             var selected =
-                challenges.FirstOrDefault(c => c.number == choice);
+                challenges.FirstOrDefault(c => c.challengeNumber == choice);
 
             if (selected != null)
             {

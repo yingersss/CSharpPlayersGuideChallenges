@@ -2,7 +2,7 @@ using System;
 
 public interface Challenge
 {
-    string name { get; }
-    int number { get; }
+    string challengeName { get; }
+    int challengeNumber { get; }
     void Run();
 }

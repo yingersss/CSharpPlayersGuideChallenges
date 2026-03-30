@@ -9,12 +9,12 @@ namespace CSharpPlayersGuideChallenges.challenges
 
     public class HelloWorld : Challenge
     {
-        public string name => "HelloWorld Challenge, What Comes Next, The Makings of a Programmer Challenge";
-        public int number => 1;
+        public string challengeName => "HelloWorld Challenge, What Comes Next, The Makings of a Programmer Challenge";
+        public int challengeNumber => 1;
 
         public void Run()
         {
-            Console.WriteLine("Running Challenge " + number + ": " + name + "!");
+            Console.WriteLine("Running Challenge " + challengeNumber + ": " + challengeName + "!");
             Console.WriteLine("Hello, World!"); 
             Console.WriteLine("This is also the 'What comes next challenge'");
             Console.WriteLine("As well as the 'The makings of a programmer challenge'");
