@@ -3,6 +3,10 @@
 // run dotnet restore
 // dotnet build
 // when pulling or cloning, run dotnet restore to get the dependencies
+
+// use dotnet watch run to automatically rebuild and rerun the program when you make changes
+// dotnet watch run
+// so you dont have to manually stop and restart the program every time you make a change
 class Program
 {
     static List<Challenge> LoadChallenges()
