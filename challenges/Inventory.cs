@@ -29,8 +29,7 @@ namespace CSharpPlayersGuideChallenges.challenges
             string playerName = Console.ReadLine();
             double GOLD_DISCOUNT = 1; // 1 = no discount, .5 = 50% discount, etc.
 
-            if (playerName.ToLower() == "iris")
-                GOLD_DISCOUNT = .5;
+            if (playerName.ToLower() == "iris") GOLD_DISCOUNT = .5;
 
             switch(choice)
             {
