@@ -9,7 +9,7 @@ namespace CSharpPlayersGuideChallenges.challenges
     public class Countdown : Challenge
     {
         public string challengeName => "Countdown";
-        public int challengeNumber => 16;
+        public int challengeNumber => 17;
 
         public void CountdownFrom(int number)
         {
