@@ -16,7 +16,6 @@ namespace CSharpPlayersGuideChallenges.challenges
         int CITY_HEALTH = 15;
         int roundNumber = 1;
         int manticoreDistance;
-        int cannonDamage;
 
         public void reset()
         {
@@ -24,17 +23,23 @@ namespace CSharpPlayersGuideChallenges.challenges
             CITY_HEALTH = CITY_MAX_HEALTH;
             roundNumber = 1;
             manticoreDistance = 0;
-            cannonDamage = 0;
         }
 
-        public void cannonAttack(int shotDistance)
+        public int getCannonDamage(int round)
+        {
+            if (round % 3 == 0 && round % 5 == 0)   return 10;
+            else if (round % 3 == 0 || round % 5 == 0) return 3;
+            else return 1;
+        }
+
+        public void cannonAttack(int shotDistance, int currentCannonDamage)
         {
 
             if (shotDistance == manticoreDistance)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("That round was a DIRECT HIT!");
-                MANTICORE_HEALTH -= cannonDamage;
+                MANTICORE_HEALTH -= currentCannonDamage;
                 Console.ResetColor();
             }
             else if (shotDistance < manticoreDistance)
@@ -68,28 +73,33 @@ namespace CSharpPlayersGuideChallenges.challenges
 
         public void player2Turn()
         {
-            Console.WriteLine("------------------------------------------------------------");
+            Console.WriteLine("------------------------------------------------------------------");
             Console.WriteLine($"STATUS: Round: {roundNumber} City: {CITY_HEALTH}/{CITY_MAX_HEALTH} Manticore: {MANTICORE_HEALTH}/{MANTICORE_MAX_HEALTH} ");
 
-            if (roundNumber % 3 == 0 && roundNumber % 5 == 0) // if the round number is a multiple of both 3 and 5, the cannon will deal 10 damage
+            int currentCannonDamage = getCannonDamage(roundNumber); // get the cannon damage based on the round number
+
+            switch(currentCannonDamage) // print out the expected damage for this round based on the cannon damage
             {
-                cannonDamage = 10;
-                Console.WriteLine("The cannon is is expected to deal 10 damage this round.");
-            }
-            else if (roundNumber % 3 == 0 || roundNumber % 5 == 0) // if the round number is a multiple of either 3 or 5, the cannon will deal 3 damage
-            {
-                cannonDamage = 3;
-                Console.WriteLine("The cannon is expected to deal 3 damage this round.");
-            }
-            else
-            {
-                cannonDamage = 1; // default 1 damage
-                Console.WriteLine("The cannon is is expected to deal 1 damage this round.");
+                case 10:
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine("The cannon is expected to deal 10 damage this round.");
+                    Console.ResetColor();
+                    break;
+                case 3:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("The cannon is expected to deal 3 damage this round.");
+                    Console.ResetColor();
+                    break;
+                case 1:
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("The cannon is expected to deal 1 damage this round.");
+                    Console.ResetColor();
+                    break;
             }
 
             Console.Write("Enter desired cannon range: ");
             int shotDistance = int.Parse(Console.ReadLine());
-            cannonAttack(shotDistance); // call the cannon attack function with the shot distance
+            cannonAttack(shotDistance, currentCannonDamage); // call the cannon attack function with the shot distance and current cannon damage
 
             roundNumber++;
             CITY_HEALTH--;
