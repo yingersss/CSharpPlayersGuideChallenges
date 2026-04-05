@@ -34,8 +34,8 @@ namespace CSharpPlayersGuideChallenges.challenges
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("The chest is locked, you can't open it.");
-                        return setChestState(chest);
                         Console.ResetColor();
+                        return setChestState(chest);
                     }
                     else if (chest == CHEST_STATE.CLOSED) // if chest is closed, open it
                     {
@@ -46,8 +46,8 @@ namespace CSharpPlayersGuideChallenges.challenges
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("The chest is already opened.");
-                        return setChestState(chest);
                         Console.ResetColor();
+                        return setChestState(chest);
                     }
 
 
@@ -61,15 +61,15 @@ namespace CSharpPlayersGuideChallenges.challenges
                     {  // if chest is locked , it's already closed , just return the state
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("The chest is already locked, you can't close it.");
-                        return setChestState(chest);
                         Console.ResetColor();
+                        return setChestState(chest);
                     }
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("The chest is already closed.");
-                        return setChestState(chest);
                         Console.ResetColor();
+                        return setChestState(chest);
                     }
 
 
@@ -83,15 +83,15 @@ namespace CSharpPlayersGuideChallenges.challenges
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("The chest is already opened, you can't lock it.");
-                        return setChestState(chest);
                         Console.ResetColor();
+                        return setChestState(chest);
                     }
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("The chest is already locked, you can't lock it.");
-                        return setChestState(chest);
                         Console.ResetColor();
+                        return setChestState(chest);
                     }
 
 
@@ -105,23 +105,23 @@ namespace CSharpPlayersGuideChallenges.challenges
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("The chest is already opened, you can't unlock it.");
-                        return setChestState(chest);
                         Console.ResetColor();
+                        return setChestState(chest);
                     }
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("The chest is already unlocked, you can't unlock it.");
-                        return setChestState(chest);
                         Console.ResetColor();
+                        return setChestState(chest);
                     }
 
 
                 default:
                     Console.ForegroundColor= ConsoleColor.Red;
                     Console.WriteLine("Invalid input, try again.");
-                    return setChestState(chest);
                     Console.ResetColor();
+                    return setChestState(chest);
             }
             
         }
