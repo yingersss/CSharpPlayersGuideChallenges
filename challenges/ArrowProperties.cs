@@ -22,6 +22,13 @@ namespace CSharpPlayersGuideChallenges.challenges
             this.Length = getLength();
         }
 
+        public ArrowVin(ARROWHEAD arrowHead, FLETCHING fletching, int length)
+        {
+            this.ArrowHead = arrowHead;
+            this.Fletching = fletching;
+            this.Length = length;
+        }
+
         public float getCost()
         {
             float cost = 0;
@@ -74,7 +81,14 @@ namespace CSharpPlayersGuideChallenges.challenges
         public int getLength()
         {
             Console.Write("Please choose an arrow length between 60 - 100: ");
-            int length = int.Parse(Console.ReadLine());
+
+            if (int.TryParse(Console.ReadLine(), out int leg) == false)
+            {
+                Console.WriteLine("Invalid input, please enter a number.");
+                return getLength();
+            }
+
+            int length = leg;
 
             if (length < 60 || length > 100)
             {
@@ -82,24 +96,61 @@ namespace CSharpPlayersGuideChallenges.challenges
                 return getLength();
             }
 
+
+
             return length;
         }
 
-    }
-    public class ArrowProperties : Challenge
-    {
-        public string challengeName => "The Properties of Arrows";
-        public int challengeNumber => 22;
-
-        public void Run()
+        public static ArrowVin CreateEliteArrow()
         {
-            ArrowVin arrow = new ArrowVin();
-            Console.WriteLine($"The total cost of the arrow is {arrow.getCost()} coins.");
+            return new ArrowVin(ARROWHEAD.STEEL, FLETCHING.PLASTIC, 95);
+        }
 
-            Console.WriteLine();
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey();
+        public static ArrowVin CreateBeginnerArrow()
+        {
+            return new ArrowVin(ARROWHEAD.WOOD, FLETCHING.GOOSE_FEATHERS, 75);
+        }
 
+        public static ArrowVin CreateMarksmanArrow()
+        {
+            return new ArrowVin(ARROWHEAD.STEEL, FLETCHING.GOOSE_FEATHERS, 65);
+        }
+
+        public static ArrowVin DisplayStock()
+        {
+            Console.WriteLine("Here's my stock, let me know what you'd like to choose from the list: \nElite Arrow, Beginner Arrow, Marksman Arrow, Custom Arrow: ");
+            string choice = Console.ReadLine().ToLower();
+
+            switch (choice)
+            {
+                case "elite": return CreateEliteArrow();
+                case "beginner": return CreateBeginnerArrow();
+                case "marksman": return CreateMarksmanArrow();
+                case "custom": return new ArrowVin();
+                default:
+                    {
+                        Console.WriteLine("Invalid choice, please try again: ");
+                        return DisplayStock();
+                    }
+            }
+
+        }
+
+        public class ArrowProperties : Challenge
+        {
+            public string challengeName => "The Properties of Arrows";
+            public int challengeNumber => 22;
+
+            public void Run()
+            {
+                ArrowVin arrow = DisplayStock();
+                Console.WriteLine($"The total cost of the arrow is {arrow.getCost()} coins.");
+
+                Console.WriteLine();
+                Console.WriteLine("Press any key to exit...");
+                Console.ReadKey();
+
+            }
         }
     }
 }
