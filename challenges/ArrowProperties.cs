@@ -7,48 +7,33 @@ using static CSharpPlayersGuideChallenges.challenges.SimulaSoup;
 
 namespace CSharpPlayersGuideChallenges.challenges
 {
-    public class Arrow
+    public class ArrowVin
     {
         public enum ARROWHEAD { STEEL, WOOD, OBSIDIAN };
         public enum FLETCHING { PLASTIC, TURKEY_FEATHERS, GOOSE_FEATHERS };
-        private int length; // in cm
-        private ARROWHEAD arrowHead;
-        private FLETCHING fletching;
+        private int Length { get; set; } // in cm
+        private ARROWHEAD ArrowHead { get; set; }
+        private FLETCHING Fletching { get; set; }
 
-        public Arrow()
-        {   this.arrowHead = getArrowHead();
-            this.fletching = getFletching();
-            this.length = getLength();
-        }
-
-        public ARROWHEAD getArrowHeadType() // for vin's trouble but i already have some methods down below
+        public ArrowVin()
         {
-            return arrowHead;
-        }
-
-        public FLETCHING getFletchingType()
-        {
-            return fletching;
-        }
-
-        public int getArrowLength()
-        {
-            return length;
+            this.ArrowHead = getArrowHead();
+            this.Fletching = getFletching();
+            this.Length = getLength();
         }
 
         public float getCost()
         {
             float cost = 0;
 
-            if (arrowHead == ARROWHEAD.STEEL) cost += 10;
-            else if (arrowHead == ARROWHEAD.WOOD) cost += 3;
-            else if (arrowHead == ARROWHEAD.OBSIDIAN) cost += 5;
+            if (ArrowHead == ARROWHEAD.STEEL) cost += 10;
+            else if (ArrowHead == ARROWHEAD.WOOD) cost += 3;
+            else if (ArrowHead == ARROWHEAD.OBSIDIAN) cost += 5;
 
-            if (fletching == FLETCHING.PLASTIC) cost += 10;
-            else if (fletching == FLETCHING.TURKEY_FEATHERS) cost += 5;
-            else if (fletching == FLETCHING.GOOSE_FEATHERS) cost += 3;
-
-            cost += length * 0.05f;
+            if (Fletching == FLETCHING.PLASTIC) cost += 10;
+            else if (Fletching == FLETCHING.TURKEY_FEATHERS) cost += 5;
+            else if (Fletching == FLETCHING.GOOSE_FEATHERS) cost += 3;
+            cost += Length * 0.05f;
 
             return cost;
         }
@@ -58,7 +43,7 @@ namespace CSharpPlayersGuideChallenges.challenges
             Console.Write("Please choose an arrowhead from the list: STEEL, WOOD, OBSIDIAN: ");
             string arrowhead = Console.ReadLine().ToLower();
 
-            switch(arrowhead)
+            switch (arrowhead)
             {
                 case "steel": return ARROWHEAD.STEEL;
                 case "wood": return ARROWHEAD.WOOD;
@@ -86,7 +71,7 @@ namespace CSharpPlayersGuideChallenges.challenges
             }
         }
 
-        public int getLength() 
+        public int getLength()
         {
             Console.Write("Please choose an arrow length between 60 - 100: ");
             int length = int.Parse(Console.ReadLine());
@@ -101,14 +86,14 @@ namespace CSharpPlayersGuideChallenges.challenges
         }
 
     }
-    public class FletcherArrows : Challenge
+    public class ArrowProperties : Challenge
     {
-        public string challengeName => "Vin Fletcher's Arrows & Vin's Trouble ";
-        public int challengeNumber => 21;
+        public string challengeName => "The Properties of Arrows";
+        public int challengeNumber => 22;
 
         public void Run()
         {
-            Arrow arrow = new Arrow();
+            ArrowVin arrow = new ArrowVin();
             Console.WriteLine($"The total cost of the arrow is {arrow.getCost()} coins.");
 
             Console.WriteLine();
